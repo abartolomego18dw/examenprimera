@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreInventario;
 use App\Inventario;
+use App\Producto;
 
 class InventarioController extends Controller
 {
@@ -15,7 +17,8 @@ class InventarioController extends Controller
     public function index()
     {
     $inventarios = Inventario::All();
-    return view('index',['inventarios'=>$inventarios]);
+    $productos = Producto::all();
+    return view('index',['inventarios'=>$inventarios, 'productos'=>$productos]);
     }
 
     public function create()
@@ -23,10 +26,11 @@ class InventarioController extends Controller
         return view('form');
     }
 
-    public function store(Request $request)
+    public function store(StoreInventario $request)
     {
+        $validated = $request->validated();
         
-        $inventario = new Invetario();
+        $inventario = new Inventario();
 
         $inventario->descripcion = $request->input('descripcion');
         $inventario->cantidad = $request->input('cantidad');

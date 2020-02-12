@@ -14,6 +14,9 @@
             <ul>
                 <li>Descripcion: {{$inventario->descripcion}}</li>
                 <li>Cantidad: {{$inventario->cantidad}}</li>
+                @foreach ($productos as $producto)
+                    <li>Nombre: {{$producto->nombre}}</li>
+                @endforeach
             </ul>
             <br>
         @endforeach

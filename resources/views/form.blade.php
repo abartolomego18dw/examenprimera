@@ -11,14 +11,14 @@
     </head>
     <body>
     <form method="POST" action="{{route('inventario.store')}}">
-
-            <label>Descripcion: </label><input type="text" name="descripcion">
+            @csrf
+            <label>Descripcion: </label><input type="text" name="descripcion" value="{{old('descripcion')}}">
             @error('descripcion')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                           </span>
                         @enderror
-            <label>Cantidad: </label><input type="number" name="cantidad" >
+                        <label>Cantidad: </label><input type="number" name="cantidad" value="{{old('cantidad')}}">
             @error('cantidad')
             <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
